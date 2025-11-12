@@ -11,32 +11,30 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-public class Pagamento {
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPagamento;
+    private Long idPayment;
 
     @ManyToOne
-    @JoinColumn(name = "id_aluno", nullable = false)
-    private Aluno aluno;
+    @JoinColumn(name = "id_student", nullable = false)
+    private Student student;
 
     @Column(nullable = false)
-    private LocalDate mesReferencia;
+    private LocalDate referenceMonth;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal valorContratado;
+    private BigDecimal contractValue;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal valorPago;
+    private BigDecimal amountPaid;
 
     @Column(nullable = false)
-    private LocalDate dataVencimento;
+    private LocalDate dueDate;
 
-    private LocalDate dataPagamento; // Pode ser NULL se não foi pago
+    private LocalDate paymentDate; // Pode ser NULL se não foi pago
 
     @Column(nullable = false, length = 20)
     private String status; // Ex: "Pago", "Pendente"
-
-    // Construtores, Getters e Setters (Omissos para brevidade)
 }

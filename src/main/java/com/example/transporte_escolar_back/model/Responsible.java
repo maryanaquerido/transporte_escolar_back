@@ -7,23 +7,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 
 @Entity
-public class Motorista {
+public class Responsible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMotorista;
+    private Long idResponsible;
 
     @Column(nullable = false, length = 100)
-    private String nome;
-
-    @Column(nullable = false, length = 20)
-    private String telefone;
+    private String name;
 
     @Column(nullable = false, length = 30)
-    private String cnh;
+    private String kinship;
 
-    @Column(nullable = false, length = 10)
-    private String placaVeiculo;
-
-    // Construtores, Getters e Setters (Omissos para brevidade)
+    @Column(nullable = false, length = 20)
+    private String contactNumber;
 }

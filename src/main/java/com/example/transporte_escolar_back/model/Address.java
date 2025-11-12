@@ -7,26 +7,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 
 @Entity
-public class Endereco {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEndereco;
+    private Long idAddress;
 
     @Column(nullable = false, length = 10)
     private String cep;
 
     @Column(nullable = false, length = 100)
-    private String rua;
+    private String street;
+
+    @Column(nullable = false, length = 10)
+    private String number;
 
     @Column(nullable = false, length = 50)
-    private String bairro;
+    private String neighborhood;
 
     @Column(nullable = false, length = 50)
-    private String cidade;
+    private String city;
 
     @Column(nullable = false, length = 2)
-    private String estado;
-
-    // Construtores, Getters e Setters (Omissos para brevidade)
+    private String state;
 }

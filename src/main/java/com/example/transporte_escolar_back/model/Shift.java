@@ -8,20 +8,18 @@ import jakarta.persistence.Column;
 import java.time.LocalTime;
 
 @Entity
-public class Turno {
+public class Shift {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTurno;
+    private Long idShift;
 
     @Column(nullable = false, length = 50)
-    private String nomeRota;
+    private String routeName;
 
     @Column(nullable = false)
-    private LocalTime horarioInicioServico;
+    private LocalTime startShift;
 
     @Column(nullable = false)
-    private LocalTime horarioFimServico;
-
-    // Construtores, Getters e Setters (Omissos para brevidade)
+    private LocalTime endShift;
 }
