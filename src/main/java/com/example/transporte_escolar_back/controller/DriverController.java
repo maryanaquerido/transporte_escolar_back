@@ -1,9 +1,11 @@
 package com.example.transporte_escolar_back.controller;
 
 import com.example.transporte_escolar_back.dto.request.RegisterDriverRequest;
+import com.example.transporte_escolar_back.dto.request.UpdateDriverRequest;
 import com.example.transporte_escolar_back.dto.response.ConsultDriverResponse;
 import com.example.transporte_escolar_back.dto.response.DeleteDriverResponse;
 import com.example.transporte_escolar_back.dto.response.RegisterDriverResponse;
+import com.example.transporte_escolar_back.dto.response.UpdateDriverResponse;
 import com.example.transporte_escolar_back.service.DriverService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,12 @@ public class DriverController {
     @GetMapping("/{cnh}")
     public ResponseEntity<ConsultDriverResponse> consultDriver(@PathVariable String cnh){
         ConsultDriverResponse response = driverService.consult(cnh);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PutMapping("/{cnh}")
+    public ResponseEntity<UpdateDriverResponse> updateDriver(@PathVariable String cnh, @RequestBody UpdateDriverRequest request){
+        UpdateDriverResponse response = driverService.update(cnh, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

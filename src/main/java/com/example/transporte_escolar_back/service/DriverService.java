@@ -1,9 +1,11 @@
 package com.example.transporte_escolar_back.service;
 
 import com.example.transporte_escolar_back.dto.request.RegisterDriverRequest;
+import com.example.transporte_escolar_back.dto.request.UpdateDriverRequest;
 import com.example.transporte_escolar_back.dto.response.ConsultDriverResponse;
 import com.example.transporte_escolar_back.dto.response.DeleteDriverResponse;
 import com.example.transporte_escolar_back.dto.response.RegisterDriverResponse;
+import com.example.transporte_escolar_back.dto.response.UpdateDriverResponse;
 import com.example.transporte_escolar_back.exceptions.DriverIsRegisteredException;
 import com.example.transporte_escolar_back.exceptions.DriverNotFoundException;
 import com.example.transporte_escolar_back.model.Driver;
@@ -48,15 +50,43 @@ public class DriverService {
             throw new RuntimeException();//500
         }
     }
-    public ConsultDriverResponse consult(String cnh){
-        try{
-            Optional<Driver> driver = driverRepository.findByCnh(cnh);
-            if(driver.isEmpty()){
-                throw new DriverNotFoundException("Driver not found");
-            }
+    public ConsultDriverResponse consult(String cnh) {
+        if (cnh == null || cnh.isBlank()) {
+            throw new IllegalArgumentException("CNH is required");
+        }
+        try {
+            Driver driver = driverRepository.findByCnh(cnh)
+                    .orElseThrow(() -> new DriverNotFoundException("Driver not found"));
             return new ConsultDriverResponse(true, "Driver found", driver);
-        } catch (Exception e){
-            throw new RuntimeException();//500
+        } catch (Exception e) {
+            if (e instanceof DriverNotFoundException) {
+                throw e;
+            }
+            throw new RuntimeException("Internal error", e);
+        }
+    }
+    public UpdateDriverResponse update(String cnh, UpdateDriverRequest request) {
+
+        if (cnh == null || cnh.isBlank()) {
+            throw new IllegalArgumentException("CNH is required");
+        }
+
+        try {
+            Driver existingDriver = driverRepository.findByCnh(cnh)
+                    .orElseThrow(() -> new DriverNotFoundException("Driver not found"));
+
+            existingDriver.setName(request.name());
+            existingDriver.setTelephone(request.telephone());
+            existingDriver.setVehiclePlate(request.vehiclePlate());
+
+            Driver updatedDriver = driverRepository.save(existingDriver);
+
+            return new UpdateDriverResponse(true, "Driver updated", updatedDriver);
+        } catch (Exception e) {
+            if (e instanceof DriverNotFoundException) {
+                throw e;
+            }
+            throw new RuntimeException("Internal error", e);
         }
     }
 }

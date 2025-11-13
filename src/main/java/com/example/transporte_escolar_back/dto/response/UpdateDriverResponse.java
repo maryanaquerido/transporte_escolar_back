@@ -2,8 +2,8 @@ package com.example.transporte_escolar_back.dto.response;
 
 import com.example.transporte_escolar_back.model.Driver;
 
-public record ConsultDriverResponse(
-        boolean success,
-        String message,
-        Driver driver
+public record UpdateDriverResponse(
+    boolean success,
+    String message,
+    Driver driver
 ){}
