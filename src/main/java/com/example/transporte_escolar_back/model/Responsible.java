@@ -5,8 +5,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Responsible {
 
     @Id
@@ -15,6 +21,9 @@ public class Responsible {
 
     @Column(nullable = false, length = 100)
     private String name;
+
+    @Column(nullable = false, length = 100)
+    private  String cpf;
 
     @Column(nullable = false, length = 30)
     private String kinship;

@@ -7,9 +7,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
+import lombok.*;
+
 import java.time.LocalTime;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Student {
 
     @Id
@@ -18,6 +25,9 @@ public class Student {
 
     @Column(nullable = false, length = 100)
     private String name;
+
+    @Column(nullable = false, length = 100)
+    private String cpf;
 
     @Column(nullable = false)
     private Integer birthDate;
@@ -31,11 +41,11 @@ public class Student {
     // --- Relacionamentos FK ---
     @ManyToOne
     @JoinColumn(name = "id_school", nullable = false)
-    private School school;
+    private School StudentSchool;
 
     @ManyToOne
     @JoinColumn(name = "id_responsible", nullable = false)
-    private Responsible responsible;
+    private Responsible StudentResponsible;
 
     @ManyToOne
     @JoinColumn(name = "id_address", nullable = false)
