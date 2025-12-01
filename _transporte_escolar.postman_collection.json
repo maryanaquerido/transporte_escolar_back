@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "f7942868-364b-41a8-b13b-3718d437fab3",
+		"name": "_transporte_escolar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38776928"
+	},
+	"item": [
+		{
+			"name": "driver",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"motorista\",\r\n    \"telephone\": \"(11)95660-6752\",\r\n    \"cnh\": \"1234567895\",\r\n    \"vehiclePlate\": \"aqf-6235\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.18.119:8080/driver",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"18",
+								"119"
+							],
+							"port": "8080",
+							"path": [
+								"driver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerByProcedure",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"motorista\",\r\n    \"telephone\": \"(11)95660-6752\",\r\n    \"cnh\": \"123456789\",\r\n    \"vehiclePlate\": \"aqf-6235\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.18.119:8080/driver/register",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"18",
+								"119"
+							],
+							"port": "8080",
+							"path": [
+								"driver",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"motorista\",\r\n    \"telephone\": \"(11)95660-6752\",\r\n    \"cnh\": \"123456789\",\r\n    \"vehiclePlate\": \"aqf-6235\"\r\n}"
+						},
+						"url": {
+							"raw": "http://192.168.18.119:8080/driver/123456789",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"18",
+								"119"
+							],
+							"port": "8080",
+							"path": [
+								"driver",
+								"123456789"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consult",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"motorista\",\r\n    \"telephone\": \"(11)95660-6752\",\r\n    \"cnh\": \"123456789\",\r\n    \"vehiclePlate\": \"aqf-6235\"\r\n}"
+						},
+						"url": {
+							"raw": "http://192.168.18.119:8080/driver/1234567895",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"18",
+								"119"
+							],
+							"port": "8080",
+							"path": [
+								"driver",
+								"1234567895"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"motorista\",\r\n    \"telephone\": \"(11)95660-6752\",\r\n    \"cnh\": \"123456789\",\r\n    \"vehiclePlate\": \"aqf-6235\"\r\n}"
+						},
+						"url": {
+							"raw": "http://192.168.18.119:8080/driver/1234567895",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"18",
+								"119"
+							],
+							"port": "8080",
+							"path": [
+								"driver",
+								"1234567895"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
