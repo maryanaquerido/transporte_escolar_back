@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class StudentService {
-    public RegisterStudentResponse rigister(RegisterStudentRequest request){
+    public RegisterStudentResponse register(RegisterStudentRequest request){
 
         Student student = Student.builder()
                 .name(request.name())
@@ -23,33 +23,33 @@ public class StudentService {
                 .studentArrivalTime(request.studentArrivalTime())
                 .build();
 
-        Address studentAddress = Address.builder()
-                .cep(request.studentAddress().getCep())
-                .street(request.studentAddress().getStreet())
-                .number(request.studentAddress().getNumber())
-                .neighborhood(request.studentAddress().getNeighborhood())
-                .city(request.studentAddress().getCity())
-                .state(request.studentAddress().getState())
-                .build();
-
-        School studentSchool = School.builder()
-                .name(request.studentSchool().getName())
-                .build();
-
-        Address schoolAddress = Address.builder()
-                .cep(request.studentSchool().getSchoolAddress().getCep())
-                .street(request.studentSchool().getSchoolAddress().getStreet())
-                .number(request.studentSchool().getSchoolAddress().getNumber())
-                .neighborhood(request.studentSchool().getSchoolAddress().getNeighborhood())
-                .city(request.studentSchool().getSchoolAddress().getCity())
-                .state(request.studentSchool().getSchoolAddress().getState())
-                .build();
-
-        Responsible studentResponsible = Responsible.builder()
-                .name(request.studentResponsible().getName())
-                .kinship(request.studentResponsible().getKinship())
-                .contactNumber(request.studentResponsible().getContactNumber())
-                .build();
+//        Address studentAddress = Address.builder()
+//                .cep(request.studentAddress().getCep())
+//                .street(request.studentAddress().getStreet())
+//                .number(request.studentAddress().getNumber())
+//                .neighborhood(request.studentAddress().getNeighborhood())
+//                .city(request.studentAddress().getCity())
+//                .state(request.studentAddress().getState())
+//                .build();
+//
+//        School studentSchool = School.builder()
+//                .name(request.studentSchool().getName())
+//                .build();
+//
+//        Address schoolAddress = Address.builder()
+//                .cep(request.studentSchool().getSchoolAddress().getCep())
+//                .street(request.studentSchool().getSchoolAddress().getStreet())
+//                .number(request.studentSchool().getSchoolAddress().getNumber())
+//                .neighborhood(request.studentSchool().getSchoolAddress().getNeighborhood())
+//                .city(request.studentSchool().getSchoolAddress().getCity())
+//                .state(request.studentSchool().getSchoolAddress().getState())
+//                .build();
+//
+//        Responsible studentResponsible = Responsible.builder()
+//                .name(request.studentResponsible().getName())
+//                .kinship(request.studentResponsible().getKinship())
+//                .contactNumber(request.studentResponsible().getContactNumber())
+//                .build();
 
         try{
             return new RegisterStudentResponse(true, "Student saved", student);

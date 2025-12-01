@@ -24,6 +24,12 @@ public class DriverController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @PostMapping("/procedure/insertDriver")
+    public ResponseEntity<RegisterDriverResponse> registerDriverByProcedure(@RequestBody RegisterDriverRequest request){
+        RegisterDriverResponse response = driverService.registerByProcedure(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @DeleteMapping("/{cnh}")
     public ResponseEntity<DeleteDriverResponse> deleteDriver(@PathVariable String cnh){
         DeleteDriverResponse response = driverService.delete(cnh);

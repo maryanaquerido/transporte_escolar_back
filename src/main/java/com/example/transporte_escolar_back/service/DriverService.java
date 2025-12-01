@@ -20,6 +20,30 @@ import java.util.Optional;
 public class DriverService {
     private final DriverRepository driverRepository;
 
+    public RegisterDriverResponse registerByProcedure(RegisterDriverRequest request){
+        try{
+            if(driverRepository.existsByCnh(request.cnh())){
+                System.out.println("entrou");
+                throw new DriverIsRegisteredException("Driver already registered");
+            }
+            Driver driver = Driver.builder()
+                    .name(request.name())
+                    .telephone(request.telephone())
+                    .cnh(request.cnh())
+                    .vehiclePlate(request.vehiclePlate())
+                    .build();
+            driverRepository.insertDriver(
+                    driver.getName(),
+                    driver.getTelephone(),
+                    driver.getCnh(),
+                    driver.getVehiclePlate()
+            );
+            return new RegisterDriverResponse(true, "Driver saved",driver);
+        } catch (Exception e){
+            throw new RuntimeException();
+        }
+    }
+
     public RegisterDriverResponse register(RegisterDriverRequest request){
         try{
             if(driverRepository.existsByCnh(request.cnh())){

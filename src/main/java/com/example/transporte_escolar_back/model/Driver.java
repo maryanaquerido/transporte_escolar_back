@@ -1,10 +1,6 @@
 package com.example.transporte_escolar_back.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -13,10 +9,22 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "driver")
+@NamedStoredProcedureQuery(
+        name = "Driver.insertDriver",
+        procedureName = "InsertDriver",
+        parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_name", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_telephone", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_cnh", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_vehiclePlate", type = String.class)
+        }
+)
 public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_driver")   // <-- faltava isso
     private Long idDriver;
 
     @Column(nullable = false, length = 100)
@@ -28,6 +36,6 @@ public class Driver {
     @Column(nullable = false, length = 30)
     private String cnh;
 
-    @Column(nullable = false, length = 10)
+    @Column(name = "vehicle_plate", nullable = false, length = 10)
     private String vehiclePlate;
 }
