@@ -38,7 +38,6 @@ passo a passo para rodar
    END $$
 
    DELIMITER ;
-
    )
 
-4. 
+4. rodar o front e ajustar as urls
