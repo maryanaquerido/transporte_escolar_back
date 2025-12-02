@@ -20,11 +20,16 @@ import lombok.*;
                 @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_vehiclePlate", type = String.class)
         }
 )
+@NamedStoredProcedureQuery(
+        name = "Driver.consultDriverOrdered",
+        procedureName = "consultDriverOrdered",
+        resultClasses = Driver.class
+)
 public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_driver")   // <-- faltava isso
+    @Column(name = "id_driver")
     private Long idDriver;
 
     @Column(nullable = false, length = 100)

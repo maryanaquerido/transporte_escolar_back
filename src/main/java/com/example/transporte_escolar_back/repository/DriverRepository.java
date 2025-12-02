@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DriverRepository extends JpaRepository<Driver, Long> {
@@ -19,4 +20,7 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
             @Param("p_cnh") String cnh,
             @Param("p_vehiclePlate") String vehiclePlate
     );
+
+    @Procedure(name = "Driver.consultDriverOrdered")
+    List<Driver> consultDriverOrdered();
 }

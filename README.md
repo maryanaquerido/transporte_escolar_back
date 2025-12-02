@@ -7,8 +7,9 @@ passo a passo para rodar
 
 2. certifique que o banco de dados está criado, ou crie (create database transporte_escolar).
 
-3. rode o comando para criar a procedure para inserir um motorista no banco (
-   DELIMITER //
+3. rode o comando para criar as procedures no banco (
+   DELIMITER $$
+
    CREATE PROCEDURE InsertDriver(
    IN p_name VARCHAR(100),
    IN p_telephone VARCHAR(20),
@@ -18,8 +19,26 @@ passo a passo para rodar
    BEGIN
    INSERT INTO driver (name, telephone, cnh, vehicle_plate)
    VALUES (p_name, p_telephone, p_cnh, p_vehiclePlate);
-   END //
+   END $$
+
    DELIMITER ;
+
+   DELIMITER $$
+
+   CREATE PROCEDURE consultDriverOrdered()
+   BEGIN
+   SELECT
+   id_driver,
+   cnh,
+   name,
+   telephone,
+   vehicle_plate
+   FROM driver
+   ORDER BY name ASC;
+   END $$
+
+   DELIMITER ;
+
    )
 
 4. 

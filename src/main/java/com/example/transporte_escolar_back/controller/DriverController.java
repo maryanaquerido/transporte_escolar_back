@@ -2,10 +2,7 @@ package com.example.transporte_escolar_back.controller;
 
 import com.example.transporte_escolar_back.dto.request.RegisterDriverRequest;
 import com.example.transporte_escolar_back.dto.request.UpdateDriverRequest;
-import com.example.transporte_escolar_back.dto.response.ConsultDriverResponse;
-import com.example.transporte_escolar_back.dto.response.DeleteDriverResponse;
-import com.example.transporte_escolar_back.dto.response.RegisterDriverResponse;
-import com.example.transporte_escolar_back.dto.response.UpdateDriverResponse;
+import com.example.transporte_escolar_back.dto.response.*;
 import com.example.transporte_escolar_back.service.DriverService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,6 +37,13 @@ public class DriverController {
     public ResponseEntity<ConsultDriverResponse> consultDriver(@PathVariable String cnh){
         ConsultDriverResponse response = driverService.consult(cnh);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/procedure/consultDriverOrdered")
+    public ResponseEntity<ConsultAllDriverResponse> consultDriverOrdered(){
+        System.out.println("entrou");
+        ConsultAllDriverResponse response = driverService.consultDriverOrdered();
+        return  ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping("/{cnh}")

@@ -2,17 +2,16 @@ package com.example.transporte_escolar_back.service;
 
 import com.example.transporte_escolar_back.dto.request.RegisterDriverRequest;
 import com.example.transporte_escolar_back.dto.request.UpdateDriverRequest;
-import com.example.transporte_escolar_back.dto.response.ConsultDriverResponse;
-import com.example.transporte_escolar_back.dto.response.DeleteDriverResponse;
-import com.example.transporte_escolar_back.dto.response.RegisterDriverResponse;
-import com.example.transporte_escolar_back.dto.response.UpdateDriverResponse;
+import com.example.transporte_escolar_back.dto.response.*;
 import com.example.transporte_escolar_back.exceptions.DriverIsRegisteredException;
 import com.example.transporte_escolar_back.exceptions.DriverNotFoundException;
 import com.example.transporte_escolar_back.model.Driver;
 import com.example.transporte_escolar_back.repository.DriverRepository;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,10 +19,32 @@ import java.util.Optional;
 public class DriverService {
     private final DriverRepository driverRepository;
 
+    @Transactional
+    public ConsultAllDriverResponse consultDriverOrdered(){
+        try{
+            List<Driver> result = driverRepository.consultDriverOrdered();
+
+            if (result == null || result.isEmpty()) {
+                return new ConsultAllDriverResponse(false,"No drivers found",List.of());
+            }
+
+            List<DriverResponse> drivers = result.stream()
+                    .map(d -> new DriverResponse(
+                            d.getIdDriver(),
+                            d.getName(),
+                            d.getTelephone(),
+                            d.getCnh(),
+                            d.getVehiclePlate()
+                    )).toList();
+            return new ConsultAllDriverResponse(true, "Drivers found",drivers);
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
     public RegisterDriverResponse registerByProcedure(RegisterDriverRequest request){
         try{
             if(driverRepository.existsByCnh(request.cnh())){
-                System.out.println("entrou");
                 throw new DriverIsRegisteredException("Driver already registered");
             }
             Driver driver = Driver.builder()
